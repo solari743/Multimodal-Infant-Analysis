@@ -15,32 +15,29 @@ The code is designed to be reproducible, scriptable from the command line, and m
 ## Project Structure
 
 Multimodal-Infant-Analysis/
-│
 ├── Movement Analysis/
-│   ├── src/
-│   │   ├── core/          # Computation only (no plotting, no file output)
-│   │   ├── cli/           # Command-line scripts (print results, save CSV)
-│   │   ├── plots/         # Plotting scripts
-│   │   └── multimodal/    # Cross-modality analyses (e.g., CoV + Sleep)
-│   ├── Graphs/            # Generated figures (not tracked in git)
-│   └── movement_outputs/  # Generated CSV files (not tracked in git)
+│ ├── src/
+│ │ ├── core/ # Computation only (no plotting, no file output)
+│ │ ├── cli/ # Command-line scripts (print results, save CSV)
+│ │ ├── plots/ # Plotting scripts
+│ │ └── multimodal/ # Cross-modality analyses (e.g., CoV + Sleep)
+│ ├── Graphs/ # Generated figures (not tracked in git)
+│ └── movement_outputs/ # Generated CSV files (not tracked in git)
 │
 ├── Sleep Analysis/
-│   ├── src/
-│   └── Graphs/
+│ ├── src/
+│ └── Graphs/
 │
 ├── Language Analysis/
-│   ├── src/
-│   ├── lena_outputs/
-│   └── Graphs/
+│ ├── src/
+│ ├── lena_outputs/
+│ └── Graphs/
 │
 ├── Multimodal Analysis/
-│   └── src/               # High-level combined analyses
+│ └── src/ # High-level combined analyses
 │
 ├── LICENSE
 └── README.md
-
----
 
 ## Data Privacy
 
