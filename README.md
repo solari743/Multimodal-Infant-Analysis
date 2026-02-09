@@ -14,30 +14,46 @@ The code is designed to be reproducible, scriptable from the command line, and m
 
 ## Project Structure
 
-Multimodal-Infant-Analysis/
-├── Movement Analysis/
-│ ├── src/
-│ │ ├── core/ # Computation only (no plotting, no file output)
-│ │ ├── cli/ # Command-line scripts (print results, save CSV)
-│ │ ├── plots/ # Plotting scripts
-│ │ └── multimodal/ # Cross-modality analyses (e.g., CoV + Sleep)
-│ ├── Graphs/ # Generated figures (not tracked in git)
-│ └── movement_outputs/ # Generated CSV files (not tracked in git)
-│
-├── Sleep Analysis/
-│ ├── src/
-│ └── Graphs/
-│
-├── Language Analysis/
-│ ├── src/
-│ ├── lena_outputs/
-│ └── Graphs/
-│
-├── Multimodal Analysis/
-│ └── src/ # High-level combined analyses
-│
-├── LICENSE
-└── README.md
+The repository is organized into four main analysis modules:
+
+### Movement Analysis
+- src/
+  - core/  
+    Computation functions only (no plotting, no file output)
+  - cli/  
+    Command-line scripts that run analyses and save CSV outputs
+  - plots/  
+    Scripts that generate figures from computed results
+  - multimodal/  
+    Scripts that combine movement with other modalities (e.g., sleep)
+- Graphs/  
+  Generated figures (not tracked in git)
+- movement_outputs/  
+  Generated CSV files (not tracked in git)
+
+### Sleep Analysis
+- src/  
+  Sleep processing and visualization scripts
+- Graphs/  
+  Generated sleep figures
+
+### Language Analysis
+- src/  
+  ITS parsing, metric extraction, and summaries
+- lena_outputs/  
+  Generated CSV outputs
+- Graphs/  
+  Generated figures
+
+### Multimodal Analysis
+- src/  
+  High-level scripts that combine multiple data sources (e.g., movement + sleep)
+
+### Root Files
+- LICENSE  
+- README.md  
+
+---
 
 ## Data Privacy
 
