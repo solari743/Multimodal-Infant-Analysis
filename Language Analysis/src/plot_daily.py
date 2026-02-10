@@ -1,7 +1,7 @@
 import argparse
 import os
 import matplotlib.pyplot as plt
-from src.daily_summary import compute_daily_summary
+from src.daily_core import compute_daily_summary
 
 def plot_daily(data_folder, output_dir="lena_visualizations"):
     summary = compute_daily_summary(data_folder)

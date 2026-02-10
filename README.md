@@ -128,7 +128,7 @@ Example command:
 
 python src/multimodal/cov_sleep_analysis.py \
   --h5 "C:\Path\To\Movement\File.h5" \
-  --sensor 16162 \
+  --sensor [ID Here] \
   --sleep "C:\Path\To\SleepProfile.txt"
 
 ---
