@@ -1,8 +1,3 @@
-#!/usr/bin/env python3
-# ===============================================================
-# BATCH PAIR COMPARISON — CoV SUMMARY STATS
-# ===============================================================
-
 import argparse
 import datetime
 import re
