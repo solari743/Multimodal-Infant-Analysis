@@ -1,165 +1,61 @@
-# Multimodal Infant Analysis Pipeline
 
-This repository contains a modular analysis pipeline for infant movement, sleep, and language data. The code is intended for research use and supports feature extraction, visualization, and cross-modality analysis.
 
-The project is organized into four main areas:
-- Movement Analysis (H5 accelerometer data)
-- Sleep Analysis (EDF and sleep profile text files)
-- Language Analysis (LENA ITS files)
-- Multimodal Analysis (combined analyses across modalities)
+## Language Analysis Module
+This module processes LENA ITS files and produces language developement metrics and visualizations over a 24 hour period
 
-The code is designed to be reproducible, scriptable from the command line, and modular. No patient data is included in this repository.
+The module performs the following:
+- Parse a LENA .its XML file
+- Extract segments and coversations
+- Compute the following language metrics:
+  - Adult Word Count (AWC)
+  - Child Vocalization Count (CVC)
+  - Conversational Turn Count (CTC)
+- Save extracted data to CSV files
+- Compute daily totals for each aforementioned metric
+- Generate visualizations in the form of bar graphs over the 24 hour period
 
----
+## Folder Structure
+Language Analysis/
+--> src/
+    --> cli/ 
+        --> run_extraction.py
+        --> run_daily_summary.py
+    --> core/
+        --> its_loader.py
+        --> its_extraction.py
+        --> daily_summary.py
+        --> statistics.py
+    --> plots/
+        --> daily_summary_plot.py
+    --> __init__.py
+    
+## Running the Language Analysis Pipeline
+# Navigate to the src directory
+Run:
+- cd "Language Analysis/src"
 
-## Project Structure
+# Step 1: Extract ITS Data
+Run:
+- python -m cli.run_extraction.py --its "its_file_path"
 
-The repository is organized into four main analysis modules:
+This will:
+- Parse the ITS XML file
+- Extract segments and conversations
+- Compute summary statistics
+- Save extracted data to CSV files
 
-### Movement Analysis
-- src/
-  - core/  
-    Computation functions only (no plotting, no file output)
-  - cli/  
-    Command-line scripts that run analyses and save CSV outputs
-  - plots/  
-    Scripts that generate figures from computed results
-  - multimodal/  
-    Scripts that combine movement with other modalities (e.g., sleep)
-- Graphs/  
-  Generated figures (not tracked in git)
-- movement_outputs/  
-  Generated CSV files (not tracked in git)
+# Step 2 — Generate Daily Summary
+Run:
+- python cli/run_daily_summary.py
 
-### Sleep Analysis
-- src/  
-  Sleep processing and visualization scripts
-- Graphs/  
-  Generated sleep figures
+This will:
+- Load extracted CSV files
+- Calculate daily AWC, CVC, and CTC
+- Generate a visualization of daily totals
 
-### Language Analysis
-- src/  
-  ITS parsing, metric extraction, and summaries
-- lena_outputs/  
-  Generated CSV outputs
-- Graphs/  
-  Generated figures
+## Outputs
+Results can be found in the following directories:
+- `lena_extraction_out/` — CSV file outputs
+- `lena_visualizations/` — full plot output
 
-### Multimodal Analysis
-- src/  
-  High-level scripts that combine multiple data sources (e.g., movement + sleep)
-
-### Root Files
-- LICENSE  
-- README.md  
-
----
-
-## Data Privacy
-
-Patient data is not included in this repository.
-
-All raw data files (H5, EDF, ITS, sleep profiles, etc.) should be stored locally on your machine and must not be committed to this repository. Only code, configuration, and documentation are tracked in version control.
-
----
-
-## Movement Analysis
-
-The movement pipeline supports the following metrics computed in 30-second epochs:
-
-- Acceleration magnitude
-- Coefficient of Variation (CoV)
-- Bowley-Galton skewness
-- Scalar speed
-- Velocity (X, Y, Z components)
-- Zero-Crossing Rate (ZCR)
-- Raw accelerometer visualization (downsampled)
-
-Each metric is split into:
-- core/  : computation only
-- cli/   : command-line scripts that print results and save CSV files
-- plots/ : scripts that generate figures
-
-Example commands:
-
-python -m src.cli.speed "C:\Path\To\File.h5" 16162  
-python -m src.plots.plot_speed "C:\Path\To\File.h5" 16162  
-
----
-
-## Sleep Analysis
-
-Sleep analysis scripts handle:
-- EDF-based signal processing
-- Sleep stage parsing
-- Sleep profile visualization
-- Stage timelines and distributions
-
-These scripts follow a similar structure to the movement analysis code.
-
----
-
-## Language Analysis
-
-The language analysis pipeline supports:
-- Parsing LENA ITS files
-- Extracting metadata
-- Segment-level data extraction
-- CTC, CVC, and AWC metrics
-- Hourly and summary statistics
-- CSV outputs and plots
-
----
-
-## Multimodal Analysis
-
-The Multimodal Analysis folder contains scripts that combine information from multiple data sources, such as sleep and movement.
-
-An example is the CoV and sleep stage synchronization analysis, which:
-- Loads movement data from an H5 file
-- Loads sleep stages from a text file
-- Cleans and filters the movement signal
-- Computes 30-second CoV
-- Aligns sleep stages to the movement timeline
-- Produces two plots (full timeline and compressed sleep-only view)
-- Prints summary statistics, including sleep efficiency
-
-Example command:
-
-python src/multimodal/cov_sleep_analysis.py \
-  --h5 "C:\Path\To\Movement\File.h5" \
-  --sensor [ID Here] \
-  --sleep "C:\Path\To\SleepProfile.txt"
-
----
-
-## Requirements
-
-Typical dependencies include:
-
-pip install numpy pandas matplotlib scipy h5py mne seaborn
-
-The exact set of packages depends on which parts of the project are used.
-
----
-
-## Design Notes
-
-- core/ contains computation only and no plotting or file output
-- cli/ contains scripts intended for batch or command-line use
-- plots/ contains scripts that only generate figures
-- multimodal/ contains higher-level analyses that combine data sources
-- File paths are passed through command-line arguments rather than hard-coded
-- Output files (figures and CSVs) are generated locally and should not be committed
-
----
-
-## Project Context
-
-This project supports multimodal analysis of infant development using:
-- Movement data from accelerometers
-- Sleep data from EEG and sleep staging
-- Language environment data from LENA recordings
-
-The code is intended for research workflows, exploratory analysis, and generation of figures and tables for reports or publications.
-
+        
