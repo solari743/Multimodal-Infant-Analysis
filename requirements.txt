@@ -1,0 +1,8 @@
+numpy<2.4
+pandas
+matplotlib
+h5py
+scipy
+mne
+yasa
+scikit-learn
