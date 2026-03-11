@@ -1,5 +1,3 @@
-
-
 ## Language Analysis Module
 This module processes LENA ITS files and produces language developement metrics and visualizations over a 24 hour period
 
